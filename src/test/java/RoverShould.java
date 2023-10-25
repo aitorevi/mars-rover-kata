@@ -23,8 +23,8 @@ public class RoverShould {
     }
 
     @ParameterizedTest(name="facing in {0}")
-    @EnumSource(value = Directions.class)
-    void turn_left(Directions direction) {
+    @EnumSource(value = DirectionsToLeft.class)
+    void turn_left(DirectionsToLeft direction) {
         Rover rover = new Rover(new Position(0,0), direction.initialDirection);
         rover.turnLeft();
         assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
