@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -19,38 +21,12 @@ public class RoverShould {
         assertThat(rover.getPosition()).isEqualTo(initialPosition);
         assertThat(rover.getDirection()).isEqualTo(initialDirection);
     }
-    @Test
-    void turn_left() {
-        rover.turnLeft();
-        assertThat(rover.getDirection()).isEqualTo(new West());
-    }
 
-    @Test
-    void turn_left_twice() {
+    @ParameterizedTest(name="facing in {0}")
+    @EnumSource(value = Directions.class)
+    void turn_left(Directions direction) {
+        Rover rover = new Rover(new Position(0,0), direction.initialDirection);
         rover.turnLeft();
-        rover.turnLeft();
-        assertThat(rover.getDirection()).isEqualTo(new South());
-    }
-
-    @Test
-    void turn_left_three_times() {
-        rover.turnLeft();
-        rover.turnLeft();
-        rover.turnLeft();
-        assertThat(rover.getDirection()).isEqualTo(new East());
-    }
-
-    @Test
-    void turn_left_four_times() {
-        rover.turnLeft();
-        rover.turnLeft();
-        rover.turnLeft();
-        rover.turnLeft();
-        assertThat(rover.getDirection()).isEqualTo(new North());
+        assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
     }
 }
-
-
-/*
-TPP
-*/
