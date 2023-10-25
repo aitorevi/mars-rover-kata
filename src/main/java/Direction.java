@@ -1,3 +1,3 @@
-public sealed interface Direction permits North, South, West {
+public sealed interface Direction permits East, North, South, West {
     Direction turnLeft();
 }
