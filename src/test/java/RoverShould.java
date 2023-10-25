@@ -39,6 +39,15 @@ public class RoverShould {
         rover.turnLeft();
         assertThat(rover.getDirection()).isEqualTo(new East());
     }
+
+    @Test
+    void turn_left_four_times() {
+        rover.turnLeft();
+        rover.turnLeft();
+        rover.turnLeft();
+        rover.turnLeft();
+        assertThat(rover.getDirection()).isEqualTo(new North());
+    }
 }
 
 
