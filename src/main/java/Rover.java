@@ -4,10 +4,10 @@ public class Rover {
     }
 
     public Position getPosition() {
-        return null;
+        return new Position(0,0);
     }
 
     public North getDirection() {
-        return null;
+        return new North();
     }
 }
