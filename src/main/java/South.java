@@ -6,6 +6,6 @@ public record South() implements Direction{
 
     @Override
     public Direction turnRight() {
-        return null;
+        return new West();
     }
 }
