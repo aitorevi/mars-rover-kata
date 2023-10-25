@@ -1,2 +1,2 @@
-public record West() {
+public record West() implements Direction{
 }

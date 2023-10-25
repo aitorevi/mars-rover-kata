@@ -1,13 +1,20 @@
 public class Rover {
 
-    public Rover(Position position, North north) {
+    private Direction direction;
+
+    public Rover(Position position, Direction direction) {
+        this.direction = direction;
     }
 
     public Position getPosition() {
         return new Position(0,0);
     }
 
-    public North getDirection() {
-        return new North();
+    public Direction getDirection() {
+        return this.direction;
+    }
+
+    public void turnLeft() {
+        this.direction = new West();
     }
 }

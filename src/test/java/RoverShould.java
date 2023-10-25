@@ -18,6 +18,8 @@ public class RoverShould {
         North initialDirection = new North();
         Rover rover = new Rover(initialPosition, initialDirection);
 
+        rover.turnLeft();
+
         assertThat(rover.getDirection()).isEqualTo(new West());
     }
 }
