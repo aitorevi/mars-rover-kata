@@ -12,10 +12,17 @@ public class RoverShould {
         assertThat(rover.getPosition()).isEqualTo(initialPosition);
         assertThat(rover.getDirection()).isEqualTo(initialDirection);
     }
+    @Test
+    void turn_left () {
+        Position initialPosition = new Position(0, 0);
+        North initialDirection = new North();
+        Rover rover = new Rover(initialPosition, initialDirection);
+
+        assertThat(rover.getDirection()).isEqualTo(new West());
+    }
 }
 
 
 /*
 TPP
-
 */
