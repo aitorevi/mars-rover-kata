@@ -3,4 +3,9 @@ public record South() implements Direction{
     public Direction turnLeft() {
         return new East();
     }
+
+    @Override
+    public Direction turnRight() {
+        return null;
+    }
 }
