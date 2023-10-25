@@ -29,4 +29,12 @@ public class RoverShould {
         rover.turnLeft();
         assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
     }
+
+    @ParameterizedTest(name="facing in {0}")
+    @EnumSource(value = DirectionsToRight.class)
+    void turn_right(DirectionsToRight direction) {
+        Rover rover = new Rover(new Position(0,0), direction.initialDirection);
+        rover.turnRight();
+        assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
+    }
 }
