@@ -15,6 +15,6 @@ public class Rover {
     }
 
     public void turnLeft() {
-        this.direction = new West();
+        direction = direction.turnLeft();
     }
 }
