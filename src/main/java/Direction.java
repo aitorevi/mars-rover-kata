@@ -1,3 +1,3 @@
-public sealed interface Direction permits North, West {
+public sealed interface Direction permits North, South, West {
 
 }
