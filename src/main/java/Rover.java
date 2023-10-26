@@ -29,6 +29,8 @@ public class Rover {
             position = new Position(0,1);
         } else if (direction instanceof West) {
             position = new Position(-1,0);
+        } else if (direction instanceof South) {
+            position = new Position(0,-1);
         }
     }
 }
