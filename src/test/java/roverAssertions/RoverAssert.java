@@ -1,4 +1,5 @@
 package roverAssertions;
+import mars_rover.Direction;
 import mars_rover.Position;
 import mars_rover.Rover;
 import org.assertj.core.api.AbstractAssert;
@@ -8,7 +9,7 @@ public class RoverAssert extends AbstractAssert<RoverAssert, Rover> {
         super(actual, RoverAssert.class);
     }
 
-    public static RoverAssert assertThat1(Rover actual) {
+    public static RoverAssert assertThat(Rover actual) {
         return new RoverAssert(actual);
     }
 
@@ -16,7 +17,17 @@ public class RoverAssert extends AbstractAssert<RoverAssert, Rover> {
         isNotNull();
 
         if(!actual.getPosition().equals(position)) {
-            failWithMessage("Expected Rover position to be " + position + "but was " + actual.getPosition());
+            failWithMessage("Expected Rover position to be " + position + " but was " + actual.getPosition());
+        }
+
+        return this;
+    }
+
+    public RoverAssert hasDirection(Direction direction) {
+        isNotNull();
+
+        if(!actual.getDirection().equals(direction)) {
+            failWithMessage("Expected Rover direction to be " + direction + " but was " + actual.getDirection());
         }
 
         return this;
