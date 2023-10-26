@@ -36,6 +36,15 @@ public class Rover {
         } else if (direction instanceof East) {
             position = position.incrementX();
         }
+        
+        /*  Pattern Matching Option to Java 21
+            position = switch (direction) {
+                case North n -> position.incrementY();
+                case West w -> position.decrementX();
+                case South s -> position.decrementY();
+                case East e -> position.incrementX();
+            };
+        */
     }
 
     public void moveBackward() {
