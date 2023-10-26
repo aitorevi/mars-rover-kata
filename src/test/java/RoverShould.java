@@ -37,4 +37,11 @@ public class RoverShould {
         rover.turnRight();
         assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
     }
+
+    @Test
+    void move_forward_facing_north(){
+        rover.moveForward();
+
+        assertThat(rover.getPosition()).isEqualTo(new Position(0,1));
+    }
 }

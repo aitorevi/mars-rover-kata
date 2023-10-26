@@ -21,4 +21,8 @@ public class Rover {
     public void turnRight() {
         direction = direction.turnRight();
     }
+
+    public void moveForward() {
+
+    }
 }
