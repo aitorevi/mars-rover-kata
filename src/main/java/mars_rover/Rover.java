@@ -43,6 +43,8 @@ public class Rover {
             position = position.decrementY();
         } else if (direction instanceof West) {
             position = position.incrementX();
+        } else if (direction instanceof South) {
+            position = position.incrementY();
         }
     }
 }
