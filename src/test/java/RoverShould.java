@@ -38,36 +38,13 @@ public class RoverShould {
         assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
     }
 
-    @Test
-    void move_forward_facing_north(){
+    @ParameterizedTest(name="in {0}")
+    @EnumSource(value = PositionsToMoveForward.class)
+    void move_forward(PositionsToMoveForward positionToMoveForward) {
+        Rover rover = new Rover(initialPosition, positionToMoveForward.direction);
         rover.moveForward();
 
-        assertThat(rover.getPosition()).isEqualTo(new Position(0,1));
-    }
-
-    @Test
-    void move_forward_facing_west(){
-        rover.turnLeft();
-        rover.moveForward();
-
-        assertThat(rover.getPosition()).isEqualTo(new Position(-1,0));
-    }
-
-    @Test
-    void move_forward_facing_south(){
-        rover.turnLeft();
-        rover.turnLeft();
-        rover.moveForward();
-
-        assertThat(rover.getPosition()).isEqualTo(new Position(0,-1));
-    }
-
-    @Test
-    void move_forward_facing_east(){
-        rover.turnRight();
-        rover.moveForward();
-
-        assertThat(rover.getPosition()).isEqualTo(new Position(1,0));
+        assertThat(rover.getPosition()).isEqualTo(positionToMoveForward.expected);
     }
 
     @Test
