@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
-
 import static roverAssertions.RoverAssert.assertThat;
 
 public class RoverShould {
@@ -60,5 +59,15 @@ public class RoverShould {
         rover.moveForward();
 
         assertThat(rover).hasPosition(positionsToMoveForwardTwice.expected);
+    }
+
+    @ParameterizedTest(name = "in {0}")
+    @EnumSource(value = PositionsToMoveBackwardTwice.class)
+    void move_backward_twice(PositionsToMoveBackwardTwice positionsToMoveBackwardTwice) {
+        Rover rover = new Rover(initialPosition, positionsToMoveBackwardTwice.direction);
+        rover.moveBackward();
+        rover.moveBackward();
+
+        assertThat(rover).hasPosition(positionsToMoveBackwardTwice.expected);
     }
 }
