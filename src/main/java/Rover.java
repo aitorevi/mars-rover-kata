@@ -26,7 +26,7 @@ public class Rover {
 
     public void moveForward() {
         if(direction instanceof North) {
-            position = new Position(0,1);
+            position = position.incrementY();
         } else if (direction instanceof West) {
             position = new Position(-1,0);
         } else if (direction instanceof South) {
