@@ -9,6 +9,7 @@ public class RoverShould {
     Position initialPosition;
     Direction initialDirection;
     Rover rover;
+
     @BeforeEach
     void setup() {
         initialPosition = new Position(0, 0);
@@ -22,7 +23,7 @@ public class RoverShould {
         assertThat(rover.getDirection()).isEqualTo(initialDirection);
     }
 
-    @ParameterizedTest(name="facing in {0}")
+    @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToLeft.class)
     void turn_left(DirectionsToLeft direction) {
         Rover rover = new Rover(initialPosition, direction.initialDirection);
@@ -30,7 +31,7 @@ public class RoverShould {
         assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
     }
 
-    @ParameterizedTest(name="facing in {0}")
+    @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToRight.class)
     void turn_right(DirectionsToRight direction) {
         Rover rover = new Rover(initialPosition, direction.initialDirection);
@@ -38,7 +39,7 @@ public class RoverShould {
         assertThat(rover.getDirection()).isEqualTo(direction.expectedDirection);
     }
 
-    @ParameterizedTest(name="in {0}")
+    @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveForward.class)
     void move_forward(PositionsToMoveForward positionToMoveForward) {
         Rover rover = new Rover(initialPosition, positionToMoveForward.direction);
@@ -47,11 +48,13 @@ public class RoverShould {
         assertThat(rover.getPosition()).isEqualTo(positionToMoveForward.expected);
     }
 
-    @Test
-    void move_forward_twice_facing_north(){
+    @ParameterizedTest(name = "in {0}")
+    @EnumSource(value = PositionsToMoveForwardTwice.class)
+    void move_forward_twice(PositionsToMoveForwardTwice positionsToMoveForwardTwice) {
+        Rover rover = new Rover(initialPosition, positionsToMoveForwardTwice.direction);
         rover.moveForward();
         rover.moveForward();
 
-        assertThat(rover.getPosition()).isEqualTo(new Position(0,2));
+        assertThat(rover.getPosition()).isEqualTo(positionsToMoveForwardTwice.expected);
     }
 }
