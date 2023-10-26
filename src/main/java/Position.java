@@ -10,4 +10,8 @@ public record Position(int x, int y) {
     public Position incrementX() {
         return new Position(x+1, y);
     }
+
+    public Position decrementX() {
+        return new Position(x-1,y);
+    }
 }

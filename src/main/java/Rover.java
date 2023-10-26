@@ -28,7 +28,7 @@ public class Rover {
         if(direction instanceof North) {
             position = position.incrementY();
         } else if (direction instanceof West) {
-            position = new Position(-1, 0);
+            position = position.decrementX();
         } else if (direction instanceof South) {
             position = position.decrementY();
         } else if (direction instanceof East) {
