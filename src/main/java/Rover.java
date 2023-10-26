@@ -25,6 +25,10 @@ public class Rover {
     }
 
     public void moveForward() {
-        position = new Position(0,1);
+        if(direction instanceof North) {
+            position = new Position(0,1);
+        } else if (direction instanceof West) {
+            position = new Position(-1,0);
+        }
     }
 }
