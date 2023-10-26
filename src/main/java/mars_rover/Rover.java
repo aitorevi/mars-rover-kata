@@ -41,6 +41,8 @@ public class Rover {
     public void moveBackward() {
         if(direction instanceof North) {
             position = position.decrementY();
+        } else if (direction instanceof West) {
+            position = position.incrementX();
         }
     }
 }
