@@ -1,3 +1,5 @@
+import mars_rover.*;
+
 public enum PositionsToMoveForwardTwice {
     NORTH(new North(), new Position(0, 2)),
     SOUTH(new South(), new Position(0,-2)),

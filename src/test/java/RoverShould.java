@@ -1,9 +1,14 @@
+import mars_rover.Direction;
+import mars_rover.North;
+import mars_rover.Position;
+import mars_rover.Rover;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static roverAssertions.RoverAssert.assertThat1;
 
 public class RoverShould {
     Position initialPosition;
@@ -21,6 +26,7 @@ public class RoverShould {
     void start_with_and_initial_position_facing_initial_direction() {
         assertThat(rover.getPosition()).isEqualTo(initialPosition);
         assertThat(rover.getDirection()).isEqualTo(initialDirection);
+        assertThat1(rover).hasPosition(new Position(1,1));
     }
 
     @ParameterizedTest(name = "facing in {0}")

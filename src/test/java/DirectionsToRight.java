@@ -1,3 +1,5 @@
+import mars_rover.*;
+
 public enum DirectionsToRight {
     NORTH(new North(), new East()),
     SOUTH(new South(), new West()),

@@ -1,3 +1,5 @@
+package mars_rover;
+
 public record East() implements Direction {
     @Override
     public Direction turnLeft() {
