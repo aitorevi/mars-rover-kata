@@ -1,13 +1,15 @@
 public class Rover {
 
+    private Position position;
     private Direction direction;
 
     public Rover(Position position, Direction direction) {
+        this.position = position;
         this.direction = direction;
     }
 
     public Position getPosition() {
-        return new Position(0,0);
+        return position;
     }
 
     public Direction getDirection() {
@@ -23,6 +25,6 @@ public class Rover {
     }
 
     public void moveForward() {
-
+        position = new Position(0,1);
     }
 }
