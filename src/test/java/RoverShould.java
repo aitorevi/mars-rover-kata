@@ -69,4 +69,12 @@ public class RoverShould {
 
         assertThat(rover.getPosition()).isEqualTo(new Position(1,0));
     }
+
+    @Test
+    void move_forward_twice_facing_north(){
+        rover.moveForward();
+        rover.moveForward();
+
+        assertThat(rover.getPosition()).isEqualTo(new Position(0,2));
+    }
 }
