@@ -52,4 +52,13 @@ public class RoverShould {
 
         assertThat(rover.getPosition()).isEqualTo(new Position(-1,0));
     }
+
+    @Test
+    void move_forward_facing_south(){
+        rover.turnLeft();
+        rover.turnLeft();
+        rover.moveForward();
+
+        assertThat(rover.getPosition()).isEqualTo(new Position(0,-1));
+    }
 }
