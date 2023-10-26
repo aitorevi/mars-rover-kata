@@ -27,35 +27,20 @@ public class Rover {
     }
 
     public void moveForward() {
-        if(direction instanceof North) {
-            position = position.incrementY();
-        } else if (direction instanceof West) {
-            position = position.decrementX();
-        } else if (direction instanceof South) {
-            position = position.decrementY();
-        } else if (direction instanceof East) {
-            position = position.incrementX();
-        }
-        
-        /*  Pattern Matching Option to Java 21
-            position = switch (direction) {
-                case North n -> position.incrementY();
-                case West w -> position.decrementX();
-                case South s -> position.decrementY();
-                case East e -> position.incrementX();
-            };
-        */
+        position = switch (direction) {
+            case North n -> position.incrementY();
+            case West w -> position.decrementX();
+            case South s -> position.decrementY();
+            case East e -> position.incrementX();
+        };
     }
 
     public void moveBackward() {
-        if(direction instanceof North) {
-            position = position.decrementY();
-        } else if (direction instanceof West) {
-            position = position.incrementX();
-        } else if (direction instanceof South) {
-            position = position.incrementY();
-        }  else if (direction instanceof East) {
-            position = position.decrementX();
-        }
+        position = switch (direction) {
+            case North n -> position.decrementY();
+            case West w -> position.incrementX();
+            case South s -> position.incrementY();
+            case East e -> position.decrementX();
+        };
     }
 }
