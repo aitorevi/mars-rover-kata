@@ -31,7 +31,7 @@ public class RoverShould {
     @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToLeft.class)
     void turn_left(DirectionsToLeft direction) {
-        Rover rover = new Rover(initialPosition, direction.initialDirection);
+        Rover rover = new RoverBuilder().withDirection(direction.initialDirection).build();
         rover.turnLeft();
         assertThat(rover).hasDirection(direction.expectedDirection);
     }
@@ -39,7 +39,7 @@ public class RoverShould {
     @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToRight.class)
     void turn_right(DirectionsToRight direction) {
-        Rover rover = new Rover(initialPosition, direction.initialDirection);
+        Rover rover = new RoverBuilder().withDirection(direction.initialDirection).build();
         rover.turnRight();
         assertThat(rover).hasDirection(direction.expectedDirection);
     }
@@ -47,7 +47,7 @@ public class RoverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveForward.class)
     void move_forward(PositionsToMoveForward positionToMoveForward) {
-        Rover rover = new Rover(initialPosition, positionToMoveForward.direction);
+        Rover rover = new RoverBuilder().withDirection(positionToMoveForward.direction).build();
         rover.moveForward();
 
         assertThat(rover).hasPosition(positionToMoveForward.expected);
@@ -56,7 +56,7 @@ public class RoverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveForwardTwice.class)
     void move_forward_twice(PositionsToMoveForwardTwice positionsToMoveForwardTwice) {
-        Rover rover = new Rover(initialPosition, positionsToMoveForwardTwice.direction);
+        Rover rover = new RoverBuilder().withDirection(positionsToMoveForwardTwice.direction).build();
         rover.moveForward();
         rover.moveForward();
 
@@ -66,7 +66,7 @@ public class RoverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveBackwardTwice.class)
     void move_backward_twice(PositionsToMoveBackwardTwice positionsToMoveBackwardTwice) {
-        Rover rover = new Rover(initialPosition, positionsToMoveBackwardTwice.direction);
+        Rover rover = new RoverBuilder().withDirection(positionsToMoveBackwardTwice.direction).build();
         rover.moveBackward();
         rover.moveBackward();
 
