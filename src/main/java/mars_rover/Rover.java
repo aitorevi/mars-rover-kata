@@ -56,9 +56,10 @@ public class Rover {
     }
 
     public Rover followThis(List<Commands> commands) {
-        if (commands.get(0) == BACKWARD) {
+        Commands firstCommand = commands.get(0);
+        if (firstCommand == BACKWARD) {
             this.moveBackward();
-        } else if (commands.get(0) == TURN_LEFT) {
+        } else if (firstCommand == TURN_LEFT) {
             this.turnLeft();
         } else {
             this.moveForward();
