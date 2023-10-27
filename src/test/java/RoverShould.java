@@ -74,36 +74,11 @@ public class RoverShould {
 
     @Test
     void follow_a_series_of_commands(){
-        List<Commands> commands = List.of(FORWARD);
+        List<Commands> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
 
         Rover roverAfterCommands = rover.followThis(commands);
 
-        assertThat(roverAfterCommands).hasPosition(new Position(0,1));
-    }
-    @Test
-    void follow_a_series_of_commands_2(){
-        List<Commands> commands = List.of(BACKWARD);
-
-        Rover roverAfterCommands = rover.followThis(commands);
-
-        assertThat(roverAfterCommands).hasPosition(new Position(0,-1));
-    }
-
-    @Test
-    void follow_a_series_of_commands_3(){
-        List<Commands> commands = List.of(TURN_LEFT);
-
-        Rover roverAfterCommands = rover.followThis(commands);
-
-        assertThat(roverAfterCommands).hasDirection(new West());
-    }
-
-    @Test
-    void follow_a_series_of_commands_4(){
-        List<Commands> commands = List.of(TURN_RIGHT);
-
-        Rover roverAfterCommands = rover.followThis(commands);
-
-        assertThat(roverAfterCommands).hasDirection(new East());
+        assertThat(roverAfterCommands).hasDirection(new South());
+        assertThat(roverAfterCommands).hasPosition(new Position(1,0));
     }
 }
