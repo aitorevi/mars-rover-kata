@@ -1,6 +1,7 @@
 package mars_rover;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Rover {
 
@@ -10,14 +11,6 @@ public class Rover {
     public Rover(Position position, Direction direction) {
         this.position = position;
         this.direction = direction;
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public Direction getDirection() {
-        return this.direction;
     }
 
     public void turnLeft() {
@@ -51,5 +44,18 @@ public class Rover {
             case TURN_LEFT -> this.turnLeft();
             case TURN_RIGHT -> this.turnRight();
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Rover rover = (Rover) o;
+        return Objects.equals(position, rover.position) && Objects.equals(direction, rover.direction);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(position, direction);
     }
 }

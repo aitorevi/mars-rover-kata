@@ -13,19 +13,13 @@ import static roverAssertions.RoverAssert.assertThat;
 public class RoverShould {
     Position initialPosition;
     Direction initialDirection;
-    Rover rover;
+    Rover initialRover;
 
     @BeforeEach
     void setup() {
         initialPosition = new Position(0, 0);
         initialDirection = new North();
-        rover = new RoverBuilder().build();
-    }
-
-    @Test
-    void start_with_and_initial_position_facing_initial_direction() {
-        assertThat(rover).hasPosition(initialPosition);
-        assertThat(rover).hasDirection(initialDirection);
+        initialRover = new RoverBuilder().build();
     }
 
     @ParameterizedTest(name = "facing in {0}")
@@ -33,7 +27,7 @@ public class RoverShould {
     void turn_left(DirectionsToLeft direction) {
         Rover rover = new RoverBuilder().withDirection(direction.initialDirection).build();
         rover.turnLeft();
-        assertThat(rover).hasDirection(direction.expectedDirection);
+        assertThat(rover).isEqualTo(new RoverBuilder().withDirection(direction.expectedDirection).build());
     }
 
     @ParameterizedTest(name = "facing in {0}")
@@ -41,7 +35,7 @@ public class RoverShould {
     void turn_right(DirectionsToRight direction) {
         Rover rover = new RoverBuilder().withDirection(direction.initialDirection).build();
         rover.turnRight();
-        assertThat(rover).hasDirection(direction.expectedDirection);
+        assertThat(rover).isEqualTo(new RoverBuilder().withDirection(direction.expectedDirection).build());
     }
 
     @ParameterizedTest(name = "in {0}")
@@ -50,7 +44,12 @@ public class RoverShould {
         Rover rover = new RoverBuilder().withDirection(positionToMoveForward.direction).build();
         rover.moveForward();
 
-        assertThat(rover).hasPosition(positionToMoveForward.expected);
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                .withDirection(positionToMoveForward.direction)
+                .withPosition(positionToMoveForward.expected)
+                .build()
+        );
     }
 
     @ParameterizedTest(name = "in {0}")
@@ -60,7 +59,12 @@ public class RoverShould {
         rover.moveForward();
         rover.moveForward();
 
-        assertThat(rover).hasPosition(positionsToMoveForwardTwice.expected);
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                .withDirection(positionsToMoveForwardTwice.direction)
+                .withPosition(positionsToMoveForwardTwice.expected)
+                .build()
+        );
     }
 
     @ParameterizedTest(name = "in {0}")
@@ -70,16 +74,26 @@ public class RoverShould {
         rover.moveBackward();
         rover.moveBackward();
 
-        assertThat(rover).hasPosition(positionsToMoveBackwardTwice.expected);
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                .withDirection(positionsToMoveBackwardTwice.direction)
+                .withPosition(positionsToMoveBackwardTwice.expected)
+                .build()
+        );
     }
 
     @Test
-    void follow_a_series_of_commands(){
+    void follow_a_series_of_commands() {
         List<Command> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
 
-        Rover roverAfterCommands = rover.followThis(commands);
+        Rover roverAfterCommands = initialRover.followThis(commands);
 
-        assertThat(roverAfterCommands).hasDirection(new South());
-        assertThat(roverAfterCommands).hasPosition(new Position(1,0));
+        assertThat(roverAfterCommands).isEqualTo(
+                new RoverBuilder()
+                .withDirection(new South())
+                .withPosition(new Position(1,0))
+                .build());
     }
+
+
 }
