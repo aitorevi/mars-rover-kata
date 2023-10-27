@@ -62,6 +62,7 @@ public class Rover {
     }
 
     public Rover followThis(List<Commands> commands) {
-        return null;
+        this.moveForward();
+        return new Rover(this.position,this.direction);
     }
 }
