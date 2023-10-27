@@ -21,7 +21,6 @@ public class Rover {
         direction = direction.turnRight();
     }
 
-    // TODO: Use State Pattern with Move
     public void moveForward() {
         position = new MoveForward(direction).execute(position);
     }
