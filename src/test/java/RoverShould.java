@@ -1,3 +1,4 @@
+import builders.RoverBuilder;
 import mars_rover.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ public class RoverShould {
     void setup() {
         initialPosition = new Position(0, 0);
         initialDirection = new North();
-        rover = new Rover(initialPosition, initialDirection);
+        rover = new RoverBuilder().build();
     }
 
     @Test
