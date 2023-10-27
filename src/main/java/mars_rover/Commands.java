@@ -1,5 +1,5 @@
 package mars_rover;
 
 public enum Commands {
-    BACKWARD, FORWARD
+    BACKWARD, TURN_LEFT, FORWARD
 }
