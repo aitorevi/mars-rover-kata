@@ -2,6 +2,8 @@ package mars_rover;
 
 import java.util.List;
 
+import static mars_rover.Commands.BACKWARD;
+
 public class Rover {
 
     private Position position;
@@ -62,7 +64,11 @@ public class Rover {
     }
 
     public Rover followThis(List<Commands> commands) {
-        this.moveForward();
+        if (commands.get(0) == BACKWARD) {
+            this.moveBackward();
+        } else {
+            this.moveForward();
+        }
         return new Rover(this.position,this.direction);
     }
 }
