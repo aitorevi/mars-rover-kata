@@ -53,13 +53,18 @@ public class Rover {
     }
 
     public Rover followThis(List<Commands> commands) {
-        Commands firstCommand = commands.get(0);
+        for (Commands command: commands) {
+            executeCommand(command);
+        }
+        return new Rover(this.position,this.direction);
+    }
+
+    private void executeCommand(Commands firstCommand) {
         switch (firstCommand) {
             case FORWARD -> this.moveForward();
             case BACKWARD -> this.moveBackward();
             case TURN_LEFT -> this.turnLeft();
             case TURN_RIGHT -> this.turnRight();
         }
-        return new Rover(this.position,this.direction);
     }
 }
