@@ -2,8 +2,6 @@ package mars_rover;
 
 import java.util.List;
 
-import static mars_rover.Commands.*;
-
 public class Rover {
 
     private Position position;
@@ -56,15 +54,11 @@ public class Rover {
 
     public Rover followThis(List<Commands> commands) {
         Commands firstCommand = commands.get(0);
-        if (firstCommand == BACKWARD) {
-            this.moveBackward();
-        } else if (firstCommand == TURN_LEFT) {
-            this.turnLeft();
-        } else if (firstCommand == TURN_RIGHT){
-            this.turnRight();
-        }
-        else {
-            this.moveForward();
+        switch (firstCommand) {
+            case FORWARD -> this.moveForward();
+            case BACKWARD -> this.moveBackward();
+            case TURN_LEFT -> this.turnLeft();
+            case TURN_RIGHT -> this.turnRight();
         }
         return new Rover(this.position,this.direction);
     }
