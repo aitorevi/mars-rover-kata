@@ -1,5 +1,7 @@
 package mars_rover;
 
+import java.util.List;
+
 public class Rover {
 
     private Position position;
@@ -57,5 +59,9 @@ public class Rover {
         }  else if (direction instanceof East) {
             position = position.decrementX();
         }
+    }
+
+    public Rover followThis(List<Commands> commands) {
+        return null;
     }
 }

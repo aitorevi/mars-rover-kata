@@ -1,11 +1,12 @@
-import mars_rover.Direction;
-import mars_rover.North;
-import mars_rover.Position;
-import mars_rover.Rover;
+import mars_rover.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+
+import java.util.List;
+
+import static mars_rover.Commands.FORWARD;
 import static roverAssertions.RoverAssert.assertThat;
 
 public class RoverShould {
@@ -69,5 +70,14 @@ public class RoverShould {
         rover.moveBackward();
 
         assertThat(rover).hasPosition(positionsToMoveBackwardTwice.expected);
+    }
+
+    @Test
+    void follow_a_series_of_commands(){
+        List<Commands> commands = List.of(FORWARD);
+
+        Rover roverAfterCommands = rover.followThis(commands);
+
+        assertThat(roverAfterCommands).hasPosition(new Position(0,1));
     }
 }
