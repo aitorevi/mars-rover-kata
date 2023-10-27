@@ -28,6 +28,7 @@ public class Rover {
         direction = direction.turnRight();
     }
 
+    // TODO: Use State Pattern with Move
     public void moveForward() {
         if(direction instanceof North) {
             position = position.incrementY();
@@ -52,15 +53,15 @@ public class Rover {
         }
     }
 
-    public Rover followThis(List<Commands> commands) {
-        for (Commands command: commands) {
+    public Rover followThis(List<Command> commands) {
+        for (Command command: commands) {
             executeCommand(command);
         }
         return new Rover(this.position,this.direction);
     }
 
-    private void executeCommand(Commands firstCommand) {
-        switch (firstCommand) {
+    private void executeCommand(Command command) {
+        switch (command) {
             case FORWARD -> this.moveForward();
             case BACKWARD -> this.moveBackward();
             case TURN_LEFT -> this.turnLeft();

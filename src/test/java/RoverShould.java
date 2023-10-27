@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.EnumSource;
 
 import java.util.List;
 
-import static mars_rover.Commands.*;
+import static mars_rover.Command.*;
 import static roverAssertions.RoverAssert.assertThat;
 
 public class RoverShould {
@@ -74,7 +74,7 @@ public class RoverShould {
 
     @Test
     void follow_a_series_of_commands(){
-        List<Commands> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
+        List<Command> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
 
         Rover roverAfterCommands = rover.followThis(commands);
 
