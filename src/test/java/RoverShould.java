@@ -97,4 +97,13 @@ public class RoverShould {
 
         assertThat(roverAfterCommands).hasDirection(new West());
     }
+
+    @Test
+    void follow_a_series_of_commands_4(){
+        List<Commands> commands = List.of(TURN_RIGHT);
+
+        Rover roverAfterCommands = rover.followThis(commands);
+
+        assertThat(roverAfterCommands).hasDirection(new East());
+    }
 }
