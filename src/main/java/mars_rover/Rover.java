@@ -34,15 +34,7 @@ public class Rover {
     }
 
     public void moveBackward() {
-        if(direction instanceof North) {
-            position = position.decrementY();
-        } else if (direction instanceof West) {
-            position = position.incrementX();
-        } else if (direction instanceof South) {
-            position = position.incrementY();
-        }  else if (direction instanceof East) {
-            position = position.decrementX();
-        }
+        position = new MoveBackward(direction).execute(position);
     }
 
     public Rover followThis(List<Command> commands) {
