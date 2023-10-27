@@ -3,6 +3,7 @@ package mars_rover;
 import java.util.List;
 
 import static mars_rover.Commands.BACKWARD;
+import static mars_rover.Commands.TURN_LEFT;
 
 public class Rover {
 
@@ -57,6 +58,8 @@ public class Rover {
     public Rover followThis(List<Commands> commands) {
         if (commands.get(0) == BACKWARD) {
             this.moveBackward();
+        } else if (commands.get(0) == TURN_LEFT) {
+            this.turnLeft();
         } else {
             this.moveForward();
         }
