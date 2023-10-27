@@ -1,13 +1,19 @@
 import builders.RoverBuilder;
 import mars_rover.*;
+import mars_rover.command.Command;
+import mars_rover.direction.Direction;
+import mars_rover.direction.North;
+import mars_rover.direction.South;
+import mars_rover.position.Position;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
+import parametrizedEnums.*;
 
 import java.util.List;
 
-import static mars_rover.Command.*;
+import static mars_rover.command.Command.*;
 import static roverAssertions.RoverAssert.assertThat;
 
 public class RoverShould {

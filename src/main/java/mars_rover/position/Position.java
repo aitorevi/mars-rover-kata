@@ -1,4 +1,4 @@
-package mars_rover;
+package mars_rover.position;
 
 // TODO: Change all method naming if we think a better option
 public record Position(int x, int y) {

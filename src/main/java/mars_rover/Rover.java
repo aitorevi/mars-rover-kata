@@ -1,5 +1,11 @@
 package mars_rover;
 
+import mars_rover.command.Command;
+import mars_rover.direction.Direction;
+import mars_rover.move.MoveBackward;
+import mars_rover.move.MoveForward;
+import mars_rover.position.Position;
+
 import java.util.List;
 import java.util.Objects;
 

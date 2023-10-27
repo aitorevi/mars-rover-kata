@@ -1,4 +1,7 @@
-package mars_rover;
+package mars_rover.move;
+
+import mars_rover.position.Position;
+import mars_rover.direction.*;
 
 public record MoveBackward(Direction direction) implements Move {
 

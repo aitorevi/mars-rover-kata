@@ -1,4 +1,6 @@
-import mars_rover.*;
+package parametrizedEnums;
+
+import mars_rover.direction.*;
 
 public enum DirectionsToLeft {
     NORTH(new North(), new West()),

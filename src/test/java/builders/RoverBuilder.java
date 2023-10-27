@@ -1,8 +1,8 @@
 package builders;
 
-import mars_rover.Direction;
-import mars_rover.North;
-import mars_rover.Position;
+import mars_rover.direction.Direction;
+import mars_rover.direction.North;
+import mars_rover.position.Position;
 import mars_rover.Rover;
 
 public class RoverBuilder {

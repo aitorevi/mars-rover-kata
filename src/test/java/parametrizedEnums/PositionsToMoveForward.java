@@ -1,4 +1,7 @@
-import mars_rover.*;
+package parametrizedEnums;
+
+import mars_rover.direction.*;
+import mars_rover.position.Position;
 
 public enum PositionsToMoveForward {
     NORTH(new North(), new Position(0,1)),
