@@ -34,7 +34,7 @@ public class Rover {
     }
 
     public void moveBackward() {
-        position = new MoveBackward(direction).execute(position);
+        position = new MoveBackward(direction, territory).execute(position);
     }
 
     public Rover followThis(List<Command> commands) {
