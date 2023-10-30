@@ -4,10 +4,10 @@ import mars_rover.direction.*;
 import mars_rover.position.Position;
 
 public enum PositionsToMoveForward {
-    NORTH(new North(), new Position(0,1)),
-    SOUTH(new South(), new Position(0,-1)),
-    EAST(new East(), new Position(1,0)),
-    WEST(new West(), new Position(-1,0));
+    NORTH(new North(), new Position(1,2)),
+    SOUTH(new South(), new Position(1,0)),
+    EAST(new East(), new Position(2,1)),
+    WEST(new West(), new Position(0,1));
     public final Direction direction;
     public final Position expected;
 

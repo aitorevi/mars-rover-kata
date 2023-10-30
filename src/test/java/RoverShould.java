@@ -48,7 +48,10 @@ public class RoverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveForwardTwice.class)
     void move_forward_twice(PositionsToMoveForwardTwice positionsToMoveForwardTwice) {
-        Rover rover = new RoverBuilder().withDirection(positionsToMoveForwardTwice.direction).build();
+        Rover rover = new RoverBuilder()
+                .withDirection(positionsToMoveForwardTwice.direction)
+                .withPosition(new Position(2,2))
+                .build();
         rover.moveForward();
         rover.moveForward();
 
@@ -63,7 +66,10 @@ public class RoverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveBackwardTwice.class)
     void move_backward_twice(PositionsToMoveBackwardTwice positionsToMoveBackwardTwice) {
-        Rover rover = new RoverBuilder().withDirection(positionsToMoveBackwardTwice.direction).build();
+        Rover rover = new RoverBuilder()
+                .withDirection(positionsToMoveBackwardTwice.direction)
+                .withPosition(new Position(2,2))
+                .build();
         rover.moveBackward();
         rover.moveBackward();
 
@@ -84,7 +90,7 @@ public class RoverShould {
         assertThat(roverAfterCommands).isEqualTo(
                 new RoverBuilder()
                 .withDirection(new South())
-                .withPosition(new Position(1,0))
+                .withPosition(new Position(2,1))
                 .build());
     }
 

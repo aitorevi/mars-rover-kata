@@ -63,4 +63,12 @@ public class Rover {
     public int hashCode() {
         return Objects.hash(position, direction);
     }
+
+    @Override
+    public String toString() {
+        return "Rover{" +
+                "position=" + position +
+                ", direction=" + direction +
+                '}';
+    }
 }
