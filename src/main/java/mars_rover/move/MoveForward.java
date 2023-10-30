@@ -9,7 +9,7 @@ public record MoveForward(Direction direction, Territory territory) implements M
         return switch (direction) {
             case North n -> toNorth(position);
             case West w -> position.decrementX();
-            case South s -> position.decrementY();
+            case South s -> territory.bottomLimit() == position.y() ? new Position(position.x(), 2) : position.decrementY();
             case East e -> position.incrementX();
         };
     }
