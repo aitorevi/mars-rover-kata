@@ -97,8 +97,27 @@ public class RoverShould {
                 .build());
     }
 
+    @ParameterizedTest(name = "in {0}")
+    @EnumSource(value = PositionsToMoveForwardInTheLimit.class)
+    void appear_in_the_other_side_when_move_forward_in_the_limit(PositionsToMoveForwardInTheLimit positionsToMoveForwardInTheLimit) {
+        Rover rover = new RoverBuilder()
+                .withPosition(positionsToMoveForwardInTheLimit.initialPosition)
+                .withDirection(positionsToMoveForwardInTheLimit.direction)
+                .withTerritory(new Territory(3,3))
+                .build();
+
+        rover.moveForward();
+
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                .withPosition(positionsToMoveForwardInTheLimit.expectedPosition)
+                .withDirection(positionsToMoveForwardInTheLimit.direction)
+                .withTerritory(new Territory(3,3))
+                .build()
+        );
+    }
     @Test
-    void appear_in_the_bottom_limit_when_cross_the_top_limit_on_the_planet() {
+    void appear_in_the_bottom_limit_when_cross_the_top_limit_on_the_planet1() {
         Rover rover = new RoverBuilder()
                 .withPosition(new Position(1,2))
                 .withTerritory(new Territory(3,3))
