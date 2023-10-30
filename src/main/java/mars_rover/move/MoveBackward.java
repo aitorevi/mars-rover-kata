@@ -9,10 +9,15 @@ public record MoveBackward(Direction direction, mars_rover.Territory territory) 
     public Position execute(Position position) {
         return switch (direction) {
             case North n -> toNorth(position);
-            case West w -> position.x() == territory.rightLimit() ? new Position(territory.leftLimit(), position.y()) : position.incrementX();
+            case West w -> toWest(position);
             case South s -> toSouth(position);
             case East e -> position.decrementX();
         };
+    }
+
+    private Position toWest(Position position) {
+        final boolean isInTheRightLimit = position.x() == territory.rightLimit();
+        return isInTheRightLimit ? new Position(territory.leftLimit(), position.y()) : position.incrementX();
     }
 
     private Position toNorth(Position position) {
