@@ -41,7 +41,7 @@ public class Rover {
         for (Command command: commands) {
             executeCommand(command);
         }
-        return new Rover(this.position,this.direction, new Territory(3, 3));
+        return new Rover(this.position,this.direction, this.territory);
     }
 
     private void executeCommand(Command command) {
