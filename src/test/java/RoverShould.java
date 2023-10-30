@@ -111,4 +111,23 @@ public class RoverShould {
                 .build()
         );
     }
+
+    @Test
+    void appear_in_the_bottom_limit_when_cross_the_top_limit_on_the_planet2() {
+        Rover rover = new RoverBuilder()
+                .withPosition(new Position(1,0))
+                .withDirection(new South())
+                .withTerritory(new Territory(3,3))
+                .build();
+
+        rover.moveForward();
+
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                        .withPosition(new Position(1,2))
+                        .withDirection(new South())
+                        .withTerritory(new Territory(3,3))
+                        .build()
+        );
+    }
 }
