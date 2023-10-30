@@ -21,7 +21,7 @@ public record MoveForward(Direction direction, Territory territory) implements M
 
     private Position toWest(Position position) {
         final boolean isInTheLeftLimit = territory.leftLimit() == position.x();
-        return isInTheLeftLimit ? new Position(2, position.y()) : position.decrementX();
+        return isInTheLeftLimit ? new Position(territory.rightLimit(), position.y()) : position.decrementX();
     }
 
     private Position toSouth(Position position) {
