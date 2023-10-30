@@ -13,10 +13,12 @@ public class Rover {
 
     private Position position;
     private Direction direction;
+    private final Territory territory;
 
     public Rover(Position position, Direction direction, Territory territory) {
         this.position = position;
         this.direction = direction;
+        this.territory = territory;
     }
 
     public void turnLeft() {
@@ -28,7 +30,7 @@ public class Rover {
     }
 
     public void moveForward() {
-        position = new MoveForward(direction).execute(position);
+        position = new MoveForward(direction, territory).execute(position);
     }
 
     public void moveBackward() {
