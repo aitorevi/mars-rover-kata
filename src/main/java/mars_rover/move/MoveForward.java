@@ -8,10 +8,15 @@ public record MoveForward(Direction direction, Territory territory) implements M
     public Position execute(Position position) {
         return switch (direction) {
             case North n -> toNorth(position);
-            case West w -> territory.leftLimit() == position.x() ? new Position(2, position.y()) : position.decrementX();
+            case West w -> toWest(position);
             case South s -> toSouth(position);
             case East e -> position.incrementX();
         };
+    }
+
+    private Position toWest(Position position) {
+        final boolean isInTheLeftLimit = territory.leftLimit() == position.x();
+        return isInTheLeftLimit ? new Position(2, position.y()) : position.decrementX();
     }
 
     private Position toSouth(Position position) {
