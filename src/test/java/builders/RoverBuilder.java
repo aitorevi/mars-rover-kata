@@ -9,6 +9,7 @@ import mars_rover.Rover;
 public class RoverBuilder {
     private Position position = new Position(0,0);
     private Direction direction = new North();
+    private final Territory territory = new Territory(3, 3);
 
     public RoverBuilder withPosition(Position position) {
         this.position = position;
@@ -21,6 +22,6 @@ public class RoverBuilder {
     }
 
     public Rover build() {
-        return new Rover(position, direction, new Territory(3, 3));
+        return new Rover(position, direction, territory);
     }
 }
