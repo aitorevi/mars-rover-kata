@@ -3,6 +3,7 @@ import mars_rover.Rover;
 import mars_rover.Territory;
 import mars_rover.command.Command;
 import mars_rover.direction.South;
+import mars_rover.direction.West;
 import mars_rover.position.Position;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -126,6 +127,25 @@ public class RoverShould {
                 new RoverBuilder()
                         .withPosition(new Position(1,2))
                         .withDirection(new South())
+                        .withTerritory(new Territory(3,3))
+                        .build()
+        );
+    }
+
+    @Test
+    void appear_in_the_bottom_limit_when_cross_the_top_limit_on_the_planet3() {
+        Rover rover = new RoverBuilder()
+                .withPosition(new Position(0,1))
+                .withDirection(new West())
+                .withTerritory(new Territory(3,3))
+                .build();
+
+        rover.moveForward();
+
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                        .withPosition(new Position(2,1))
+                        .withDirection(new West())
                         .withTerritory(new Territory(3,3))
                         .build()
         );
