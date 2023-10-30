@@ -1,11 +1,8 @@
 import builders.RoverBuilder;
-import mars_rover.*;
+import mars_rover.Rover;
 import mars_rover.command.Command;
-import mars_rover.direction.Direction;
-import mars_rover.direction.North;
 import mars_rover.direction.South;
 import mars_rover.position.Position;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
@@ -17,16 +14,6 @@ import static mars_rover.command.Command.*;
 import static roverAssertions.RoverAssert.assertThat;
 
 public class RoverShould {
-    Position initialPosition;
-    Direction initialDirection;
-    Rover initialRover;
-
-    @BeforeEach
-    void setup() {
-        initialPosition = new Position(0, 0);
-        initialDirection = new North();
-        initialRover = new RoverBuilder().build();
-    }
 
     @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToLeft.class)
@@ -92,7 +79,7 @@ public class RoverShould {
     void follow_a_series_of_commands() {
         List<Command> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
 
-        Rover roverAfterCommands = initialRover.followThis(commands);
+        Rover roverAfterCommands = new RoverBuilder().build().followThis(commands);
 
         assertThat(roverAfterCommands).isEqualTo(
                 new RoverBuilder()
