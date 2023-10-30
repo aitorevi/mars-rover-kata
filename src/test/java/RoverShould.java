@@ -120,13 +120,27 @@ public class RoverShould {
                 .withTerritory(new Territory(3,3))
                 .build();
 
+        Rover rover2 = new RoverBuilder()
+                .withPosition(new Position(2,0))
+                .withDirection(new South())
+                .withTerritory(new Territory(5,5))
+                .build();
+
         rover.moveForward();
+        rover2.moveForward();
 
         assertThat(rover).isEqualTo(
                 new RoverBuilder()
                         .withPosition(new Position(1,2))
                         .withDirection(new South())
                         .withTerritory(new Territory(3,3))
+                        .build()
+        );
+        assertThat(rover2).isEqualTo(
+                new RoverBuilder()
+                        .withPosition(new Position(2,4))
+                        .withDirection(new South())
+                        .withTerritory(new Territory(5,5))
                         .build()
         );
     }
