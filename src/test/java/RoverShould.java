@@ -1,5 +1,6 @@
 import builders.RoverBuilder;
 import mars_rover.Rover;
+import mars_rover.Territory;
 import mars_rover.command.Command;
 import mars_rover.direction.South;
 import mars_rover.position.Position;
@@ -96,8 +97,18 @@ public class RoverShould {
 
     @Test
     void appear_in_the_bottom_limit_when_cross_the_top_limit_on_the_planet() {
-        Rover rover = new RoverBuilder().withPosition(new Position(0,1)).build();
+        Rover rover = new RoverBuilder()
+                .withPosition(new Position(1,2))
+                .withTerritory(new Territory(3,3))
+                .build();
+
         rover.moveForward();
-        assertThat(rover).isEqualTo(new RoverBuilder().withPosition(new Position(0,1)).build());
+
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                .withPosition(new Position(1,0))
+                .withTerritory(new Territory(3,3))
+                .build()
+        );
     }
 }
