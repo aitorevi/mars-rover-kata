@@ -12,4 +12,8 @@ public record Territory(int xLimit, int yLimit) {
     public int leftLimit() {
         return 0;
     }
+
+    public int rightLimit() {
+        return xLimit -1;
+    }
 }
