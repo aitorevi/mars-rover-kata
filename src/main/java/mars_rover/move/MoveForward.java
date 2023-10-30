@@ -9,13 +9,18 @@ public record MoveForward(Direction direction, Territory territory) implements M
         return switch (direction) {
             case North n -> toNorth(position);
             case West w -> position.decrementX();
-            case South s -> territory.bottomLimit() == position.y() ? new Position(position.x(), territory.topLimit()) : position.decrementY();
+            case South s -> toSouth(position);
             case East e -> position.incrementX();
         };
     }
 
+    private Position toSouth(Position position) {
+        final boolean isInTheBottomLimit = territory.bottomLimit() == position.y();
+        return isInTheBottomLimit ? new Position(position.x(), territory.topLimit()) : position.decrementY();
+    }
+
     private Position toNorth(Position position) {
-        boolean isInTheTopLimit = territory.topLimit() == position.y();
-        return isInTheTopLimit ? new Position(position.x(), 0) : position.incrementY();
+        final boolean isInTheTopLimit = territory.topLimit() == position.y();
+        return isInTheTopLimit ? new Position(position.x(), territory.bottomLimit()) : position.incrementY();
     }
 }
