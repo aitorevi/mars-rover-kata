@@ -1,5 +1,6 @@
 package builders;
 
+import mars_rover.Territory;
 import mars_rover.direction.Direction;
 import mars_rover.direction.North;
 import mars_rover.position.Position;
@@ -20,6 +21,6 @@ public class RoverBuilder {
     }
 
     public Rover build() {
-        return new Rover(position, direction);
+        return new Rover(position, direction, new Territory(3, 3));
     }
 }

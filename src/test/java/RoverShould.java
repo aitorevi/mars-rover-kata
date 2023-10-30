@@ -101,5 +101,12 @@ public class RoverShould {
                 .build());
     }
 
+    @Test
+    void appear_in_the_bottom_limit_when_cross_the_top_limit_on_the_planet() {
 
+        Rover rover = new Rover(new Position(0,1), new North(), new Territory(3,3));
+        rover.moveForward();
+        assertThat(rover).isEqualTo(new Rover(new Position(0,-1), new North(), new Territory(3,3)));
+
+    }
 }
