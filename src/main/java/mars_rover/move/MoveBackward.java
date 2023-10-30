@@ -11,8 +11,13 @@ public record MoveBackward(Direction direction, mars_rover.Territory territory) 
             case North n -> toNorth(position);
             case West w -> toWest(position);
             case South s -> toSouth(position);
-            case East e -> position.x() == territory.leftLimit() ? new Position(territory.rightLimit(), position.y()) : position.decrementX();
+            case East e -> toEast(position);
         };
+    }
+
+    private Position toEast(Position position) {
+        boolean isInTheLaftLimit = position.x() == territory.leftLimit();
+        return isInTheLaftLimit ? new Position(territory.rightLimit(), position.y()) : position.decrementX();
     }
 
     private Position toWest(Position position) {
