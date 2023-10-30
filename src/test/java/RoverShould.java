@@ -114,4 +114,24 @@ public class RoverShould {
                 .build()
         );
     }
+
+    @ParameterizedTest(name = "{0}")
+    @EnumSource(value = PositionsToMoveBackwardInTheLimit.class)
+    void appear_in_the_other_side_when_move_backward_in_the_limit(PositionsToMoveBackwardInTheLimit positionsToMoveBackwardInTheLimit) {
+        Rover rover = new RoverBuilder()
+                .withPosition(positionsToMoveBackwardInTheLimit.initialPosition)
+                .withDirection(positionsToMoveBackwardInTheLimit.direction)
+                .withTerritory(new Territory(3,3))
+                .build();
+
+        rover.moveBackward();
+
+        assertThat(rover).isEqualTo(
+                new RoverBuilder()
+                .withPosition(positionsToMoveBackwardInTheLimit.expectedPosition)
+                .withDirection(positionsToMoveBackwardInTheLimit.direction)
+                .withTerritory(new Territory(3,3))
+                .build()
+        );
+    }
 }
