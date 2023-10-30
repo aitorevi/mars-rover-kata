@@ -8,11 +8,16 @@ public record MoveBackward(Direction direction, mars_rover.Territory territory) 
     @Override
     public Position execute(Position position) {
         return switch (direction) {
-            case North n -> position.y() == territory.bottomLimit() ? new Position(position.x(), territory.topLimit()) : position.decrementY();
+            case North n -> toNorth(position);
             case West w -> position.incrementX();
             case South s -> toSouth(position);
             case East e -> position.decrementX();
         };
+    }
+
+    private Position toNorth(Position position) {
+        final boolean isInTheBottomLimit = position.y() == territory.bottomLimit();
+        return isInTheBottomLimit ? new Position(position.x(), territory.topLimit()) : position.decrementY();
     }
 
     private Position toSouth(Position position) {
