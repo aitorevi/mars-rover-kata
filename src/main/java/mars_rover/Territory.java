@@ -1,9 +1,11 @@
 package mars_rover;
 
+import mars_rover.exception.IlegalDimensionSizeException;
+
 public record Territory(int xLimit, int yLimit) {
     public Territory {
         if (xLimit < 1) {
-            throw new java.lang.IllegalArgumentException("The dimension must be greater than 0");
+            throw new IlegalDimensionSizeException("The dimension must be greater than 0");
         }
     }
     public int topLimit() {
