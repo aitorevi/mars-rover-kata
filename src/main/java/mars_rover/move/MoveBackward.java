@@ -1,9 +1,10 @@
 package mars_rover.move;
 
+import mars_rover.Territory;
 import mars_rover.position.Position;
 import mars_rover.direction.*;
 
-public record MoveBackward(Direction direction, mars_rover.Territory territory) implements Move {
+public record MoveBackward(Direction direction, Territory territory) implements Move {
 
     @Override
     public Position execute(Position position) {
