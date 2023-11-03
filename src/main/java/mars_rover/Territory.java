@@ -4,7 +4,7 @@ import mars_rover.exception.IlegalDimensionSizeException;
 
 public record Territory(int xLimit, int yLimit) {
     public Territory {
-        if (xLimit < 1) {
+        if (xLimit < 1 || yLimit < 1) {
             throw new IlegalDimensionSizeException("The dimension must be greater than 0");
         }
     }
