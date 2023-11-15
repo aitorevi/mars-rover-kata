@@ -31,11 +31,11 @@ public class DriverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveForward.class)
     void move_forward(PositionsToMoveForward positionToMoveForward) {
-        Rover rover = new RoverBuilder().withDirection(positionToMoveForward.direction).build();
-        rover.moveForward();
+        Driver driver = new DriverBuilder().withDirection(positionToMoveForward.direction).build();
+        driver.moveForward();
 
-        assertThat(rover).isEqualTo(
-                new RoverBuilder()
+        assertThat(driver).isEqualTo(
+                new DriverBuilder()
                         .withDirection(positionToMoveForward.direction)
                         .withPosition(positionToMoveForward.expected)
                         .build()
