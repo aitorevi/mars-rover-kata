@@ -23,9 +23,9 @@ public class DriverShould {
     @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToRight.class)
     void turn_right(DirectionsToRight direction) {
-        Rover rover = new RoverBuilder().withDirection(direction.initialDirection).build();
-        rover.turnRight();
-        assertThat(rover).isEqualTo(new RoverBuilder().withDirection(direction.expectedDirection).build());
+        Driver driver = new DriverBuilder().withDirection(direction.initialDirection).build();
+        driver.turnRight();
+        assertThat(driver).isEqualTo(new DriverBuilder().withDirection(direction.expectedDirection).build());
     }
 
     @ParameterizedTest(name = "in {0}")

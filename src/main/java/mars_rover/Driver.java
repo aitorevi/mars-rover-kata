@@ -18,6 +18,10 @@ public class Driver {
         direction = direction.turnLeft();
     }
 
+    public void turnRight() {
+        direction = direction.turnRight();
+    }
+
     public Position getPosition() {
         return position;
     }
