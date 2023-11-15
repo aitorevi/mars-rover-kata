@@ -1,6 +1,7 @@
 package mars_rover;
 
 import mars_rover.direction.Direction;
+import mars_rover.move.MoveBackward;
 import mars_rover.move.MoveForward;
 import mars_rover.position.Position;
 
@@ -27,6 +28,10 @@ public class Driver {
 
     public void moveForward() {
         position = new MoveForward(direction, territory).execute(position);
+    }
+
+    public void moveBackward() {
+        position = new MoveBackward(direction, territory).execute(position);
     }
 
     public Position getPosition() {

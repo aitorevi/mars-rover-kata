@@ -63,15 +63,15 @@ public class DriverShould {
     @ParameterizedTest(name = "in {0}")
     @EnumSource(value = PositionsToMoveBackwardTwice.class)
     void move_backward_twice(PositionsToMoveBackwardTwice positionsToMoveBackwardTwice) {
-        Rover rover = new RoverBuilder()
+        Driver driver = new DriverBuilder()
                 .withDirection(positionsToMoveBackwardTwice.direction)
                 .withPosition(new Position(2,2))
                 .build();
-        rover.moveBackward();
-        rover.moveBackward();
+        driver.moveBackward();
+        driver.moveBackward();
 
-        assertThat(rover).isEqualTo(
-                new RoverBuilder()
+        assertThat(driver).isEqualTo(
+                new DriverBuilder()
                         .withDirection(positionsToMoveBackwardTwice.direction)
                         .withPosition(positionsToMoveBackwardTwice.expected)
                         .build()
