@@ -1,4 +1,6 @@
+import builders.DriverBuilder;
 import builders.RoverBuilder;
+import mars_rover.Driver;
 import mars_rover.Rover;
 import mars_rover.Territory;
 import mars_rover.position.Position;
@@ -6,15 +8,16 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import parametrizedEnums.*;
 
-import static roverAssertions.RoverAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+
 
 public class DriverShould {
     @ParameterizedTest(name = "facing in {0}")
     @EnumSource(value = DirectionsToLeft.class)
     void turn_left(DirectionsToLeft direction) {
-        Rover rover = new RoverBuilder().withDirection(direction.initialDirection).build();
-        rover.turnLeft();
-        assertThat(rover).isEqualTo(new RoverBuilder().withDirection(direction.expectedDirection).build());
+        Driver driver = new DriverBuilder().withDirection(direction.initialDirection).build();
+        driver.turnLeft();
+        assertThat(driver).isEqualTo(new DriverBuilder().withDirection(direction.expectedDirection).build());
     }
 
     @ParameterizedTest(name = "facing in {0}")
