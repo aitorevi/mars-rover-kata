@@ -1,7 +1,5 @@
 import builders.DriverBuilder;
-import builders.RoverBuilder;
 import mars_rover.Driver;
-import mars_rover.Rover;
 import mars_rover.Territory;
 import mars_rover.position.Position;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -81,16 +79,16 @@ public class DriverShould {
     @ParameterizedTest(name = "{0}")
     @EnumSource(value = PositionsToMoveForwardInTheLimit.class)
     void appear_in_the_other_side_when_move_forward_in_the_limit(PositionsToMoveForwardInTheLimit positionsToMoveForwardInTheLimit) {
-        Rover rover = new RoverBuilder()
+        Driver driver = new DriverBuilder()
                 .withPosition(positionsToMoveForwardInTheLimit.initialPosition)
                 .withDirection(positionsToMoveForwardInTheLimit.direction)
                 .withTerritory(new Territory(3,3))
                 .build();
 
-        rover.moveForward();
+        driver.moveForward();
 
-        assertThat(rover).isEqualTo(
-                new RoverBuilder()
+        assertThat(driver).isEqualTo(
+                new DriverBuilder()
                         .withPosition(positionsToMoveForwardInTheLimit.expectedPosition)
                         .withDirection(positionsToMoveForwardInTheLimit.direction)
                         .withTerritory(new Territory(3,3))
@@ -101,16 +99,16 @@ public class DriverShould {
     @ParameterizedTest(name = "{0}")
     @EnumSource(value = PositionsToMoveBackwardInTheLimit.class)
     void appear_in_the_other_side_when_move_backward_in_the_limit(PositionsToMoveBackwardInTheLimit positionsToMoveBackwardInTheLimit) {
-        Rover rover = new RoverBuilder()
+        Driver driver = new DriverBuilder()
                 .withPosition(positionsToMoveBackwardInTheLimit.initialPosition)
                 .withDirection(positionsToMoveBackwardInTheLimit.direction)
                 .withTerritory(new Territory(3,3))
                 .build();
 
-        rover.moveBackward();
+        driver.moveBackward();
 
-        assertThat(rover).isEqualTo(
-                new RoverBuilder()
+        assertThat(driver).isEqualTo(
+                new DriverBuilder()
                         .withPosition(positionsToMoveBackwardInTheLimit.expectedPosition)
                         .withDirection(positionsToMoveBackwardInTheLimit.direction)
                         .withTerritory(new Territory(3,3))
