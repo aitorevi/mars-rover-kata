@@ -13,31 +13,12 @@ public class RoverBuilder {
     private Territory territory = new Territory(5, 5);
     private Driver driver = new Driver(position, direction, territory);
 
-    public RoverBuilder withPosition(Position position) {
-        this.position = position;
-        return this;
-    }
-
-    public RoverBuilder withDirection(Direction direction) {
-        this.direction = direction;
-        return this;
-    }
-
-    public RoverBuilder withTerritory(Territory territory) {
-        this.territory = territory;
-        return this;
-    }
-
     public RoverBuilder withDriver(Driver driver) {
         this.driver = driver;
         return this;
     }
 
     public Rover build() {
-        return new Rover(position, direction, territory);
-    }
-
-    public Rover build2() {
         return new Rover(driver);
     }
 }

@@ -10,7 +10,7 @@ import java.util.Objects;
 public class Driver {
     private Position position;
     private Direction direction;
-    private Territory territory;
+    private final Territory territory;
 
     public Driver(Position position, Direction direction, Territory territory) {
         this.position = position;
@@ -53,5 +53,14 @@ public class Driver {
     @Override
     public int hashCode() {
         return Objects.hash(position, direction, territory);
+    }
+
+    @Override
+    public String toString() {
+        return "Driver{" +
+                "position=" + position +
+                ", direction=" + direction +
+                ", territory=" + territory +
+                '}';
     }
 }

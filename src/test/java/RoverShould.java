@@ -1,4 +1,6 @@
+import builders.DriverBuilder;
 import builders.RoverBuilder;
+import mars_rover.Driver;
 import mars_rover.Rover;
 import mars_rover.command.Command;
 import mars_rover.direction.South;
@@ -16,22 +18,11 @@ public class RoverShould {
         List<Command> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
 
         Rover roverAfterCommands = new RoverBuilder().build().followThis(commands);
-
-        assertThat(roverAfterCommands).isEqualTo(
-                new RoverBuilder()
+        Driver expectedDriver = new DriverBuilder()
                 .withDirection(new South())
                 .withPosition(new Position(2,1))
-                .build());
-    }
+                .build();
 
-    @Test
-    void follow_a_series_of_commands2() {
-        List<Command> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
-
-        Rover roverAfterCommands = new RoverBuilder().build2().followThis2(commands);
-
-        assertThat(roverAfterCommands).isEqualTo(
-                new RoverBuilder()
-                        .build2());
+        assertThat(roverAfterCommands).isEqualTo(new RoverBuilder().withDriver(expectedDriver).build());
     }
 }
