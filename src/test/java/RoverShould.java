@@ -23,4 +23,15 @@ public class RoverShould {
                 .withPosition(new Position(2,1))
                 .build());
     }
+
+    @Test
+    void follow_a_series_of_commands2() {
+        List<Command> commands = List.of(FORWARD, TURN_LEFT, BACKWARD, TURN_RIGHT, BACKWARD, TURN_RIGHT, TURN_RIGHT);
+
+        Rover roverAfterCommands = new RoverBuilder().build2().followThis(commands);
+
+        assertThat(roverAfterCommands).isEqualTo(
+                new RoverBuilder()
+                        .build2());
+    }
 }

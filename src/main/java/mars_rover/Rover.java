@@ -10,15 +10,19 @@ import java.util.List;
 import java.util.Objects;
 
 public class Rover {
-
     private Position position;
     private Direction direction;
-    private final Territory territory;
+    private Territory territory;
+    private Driver driver;
 
     public Rover(Position position, Direction direction, Territory territory) {
         this.position = position;
         this.direction = direction;
         this.territory = territory;
+    }
+
+    public Rover(Driver driver) {
+        this.driver = driver;
     }
 
     public void turnLeft() {
