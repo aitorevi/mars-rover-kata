@@ -42,10 +42,14 @@ public class Rover {
     }
 
     public Rover followThis(List<Command> commands) {
+        return followThis2(commands);
+    }
+
+    public Rover followThis2(List<Command> commands) {
         for (Command command: commands) {
-            executeCommand(command);
+            executeCommand2(command);
         }
-        return new Rover(this.position,this.direction, this.territory);
+        return new Rover(this.driver);
     }
 
     private void executeCommand(Command command) {
@@ -54,6 +58,15 @@ public class Rover {
             case BACKWARD -> this.moveBackward();
             case TURN_LEFT -> this.turnLeft();
             case TURN_RIGHT -> this.turnRight();
+        }
+    }
+
+    private void executeCommand2(Command command) {
+        switch (command) {
+            case FORWARD -> this.driver.moveForward();
+            case BACKWARD -> this.driver.moveBackward();
+            case TURN_LEFT -> this.driver.turnLeft();
+            case TURN_RIGHT -> this.driver.turnRight();
         }
     }
 
