@@ -47,7 +47,9 @@ public class Driver {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Driver driver = (Driver) o;
-        return Objects.equals(position, driver.position) && Objects.equals(direction, driver.direction) && Objects.equals(territory, driver.territory);
+        return Objects.equals(position, driver.position) &&
+               Objects.equals(direction, driver.direction) &&
+               Objects.equals(territory, driver.territory);
     }
 
     @Override
