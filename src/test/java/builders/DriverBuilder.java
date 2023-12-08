@@ -1,6 +1,7 @@
 package builders;
 
 import mars_rover.Driver;
+import mars_rover.Gps;
 import mars_rover.Territory;
 import mars_rover.direction.Direction;
 import mars_rover.direction.North;
@@ -27,6 +28,6 @@ public class DriverBuilder {
     }
 
     public Driver build() {
-        return new Driver(position, direction, territory);
+        return new Driver(position, direction, new Gps(territory));
     }
 }

@@ -1,8 +1,6 @@
 package mars_rover;
 
 import mars_rover.direction.Direction;
-import mars_rover.move.MoveBackward;
-import mars_rover.move.MoveForward;
 import mars_rover.position.Position;
 
 import java.util.Objects;
@@ -10,12 +8,12 @@ import java.util.Objects;
 public class Driver {
     private Position position;
     private Direction direction;
-    private final Territory territory;
+    private final Gps gps;
 
-    public Driver(Position position, Direction direction, Territory territory) {
+    public Driver(Position position, Direction direction, Gps gps) {
         this.position = position;
         this.direction = direction;
-        this.territory = territory;
+        this.gps = gps;
     }
 
     public void turnLeft() {
@@ -27,11 +25,11 @@ public class Driver {
     }
 
     public void moveForward() {
-        position = new MoveForward(direction, territory).execute(position);
+        position = gps.moveForward(position, direction);
     }
 
     public void moveBackward() {
-        position = new MoveBackward(direction, territory).execute(position);
+        position = gps.moveBackward(position, direction);
     }
 
     public Position getPosition() {
@@ -49,12 +47,12 @@ public class Driver {
         Driver driver = (Driver) o;
         return Objects.equals(position, driver.position) &&
                Objects.equals(direction, driver.direction) &&
-               Objects.equals(territory, driver.territory);
+               Objects.equals(gps, driver.gps);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, direction, territory);
+        return Objects.hash(position, direction, gps);
     }
 
     @Override
@@ -62,7 +60,7 @@ public class Driver {
         return "Driver{" +
                 "position=" + position +
                 ", direction=" + direction +
-                ", territory=" + territory +
+                ", gps=" + gps +
                 '}';
     }
 }
