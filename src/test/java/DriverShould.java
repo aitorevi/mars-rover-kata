@@ -1,4 +1,5 @@
 import builders.DriverBuilder;
+import builders.TerritoryBuilder;
 import mars_rover.Driver;
 import mars_rover.Territory;
 import mars_rover.position.Position;
@@ -83,7 +84,7 @@ public class DriverShould {
         Driver driver = new DriverBuilder()
                 .withPosition(positionsToMoveForwardInTheLimit.initialPosition)
                 .withDirection(positionsToMoveForwardInTheLimit.direction)
-                .withTerritory(new Territory(3, 3, emptyList()))
+                .withTerritory(new TerritoryBuilder().build())
                 .build();
 
         driver.moveForward();
@@ -92,7 +93,7 @@ public class DriverShould {
                 new DriverBuilder()
                         .withPosition(positionsToMoveForwardInTheLimit.expectedPosition)
                         .withDirection(positionsToMoveForwardInTheLimit.direction)
-                        .withTerritory(new Territory(3, 3, emptyList()))
+                        .withTerritory(new TerritoryBuilder().build())
                         .build()
         );
     }
@@ -103,7 +104,7 @@ public class DriverShould {
         Driver driver = new DriverBuilder()
                 .withPosition(positionsToMoveBackwardInTheLimit.initialPosition)
                 .withDirection(positionsToMoveBackwardInTheLimit.direction)
-                .withTerritory(new Territory(3, 3, emptyList()))
+                .withTerritory(new TerritoryBuilder().build())
                 .build();
 
         driver.moveBackward();
@@ -112,7 +113,7 @@ public class DriverShould {
                 new DriverBuilder()
                         .withPosition(positionsToMoveBackwardInTheLimit.expectedPosition)
                         .withDirection(positionsToMoveBackwardInTheLimit.direction)
-                        .withTerritory(new Territory(3, 3, emptyList()))
+                        .withTerritory(new TerritoryBuilder().build())
                         .build()
         );
     }
