@@ -25,4 +25,9 @@ public class TerritoryShould {
         Territory territory = new Territory(2, 2);
         assertThat(territory.hasObstacleIn(new Position(1, 1))).isTrue();
     }
+    @Test
+    void check_that_not_have_an_obstacle_in_a_certain_position () {
+        Territory territory = new Territory(2, 2);
+        assertThat(territory.hasObstacleIn(new Position(0, 2))).isFalse();
+    }
 }
