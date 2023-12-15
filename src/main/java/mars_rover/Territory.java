@@ -44,9 +44,6 @@ public record Territory(int xLimit, int yLimit, List<Position> obstacles) {
     }
 
     public boolean hasObstacleIn(Position position) {
-        if(obstacles.contains(position)){
-            return true;
-        }
-        return false;
+        return obstacles.contains(position);
     }
 }
