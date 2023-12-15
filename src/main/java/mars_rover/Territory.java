@@ -42,6 +42,6 @@ public record Territory(int xLimit, int yLimit) {
     }
 
     public boolean hasObstacleIn(Position position) {
-        return false;
+        return true;
     }
 }
