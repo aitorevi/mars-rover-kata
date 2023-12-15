@@ -1,7 +1,9 @@
 import mars_rover.Territory;
 import mars_rover.exception.IlegalDimensionSizeException;
+import mars_rover.position.Position;
 import org.junit.jupiter.api.Test;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class TerritoryShould {
@@ -16,5 +18,11 @@ public class TerritoryShould {
         assertThatThrownBy(() -> new Territory(2, 0))
             .isInstanceOf(IlegalDimensionSizeException.class)
             .hasMessageContaining("The dimension must be greater than 0");
+    }
+
+    @Test
+    void check_that_have_an_obstacle_in_a_certain_position () {
+        Territory territory = new Territory(2, 2);
+        assertThat(territory.hasObstacleIn(new Position(1, 1))).isTrue();
     }
 }

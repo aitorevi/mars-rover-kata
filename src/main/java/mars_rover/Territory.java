@@ -40,4 +40,8 @@ public record Territory(int xLimit, int yLimit) {
     boolean isInTheTopLimit(Position position) {
         return topLimit() == position.y();
     }
+
+    public boolean hasObstacleIn(Position position) {
+        return false;
+    }
 }
