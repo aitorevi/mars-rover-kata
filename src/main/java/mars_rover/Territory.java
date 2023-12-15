@@ -3,7 +3,9 @@ package mars_rover;
 import mars_rover.exception.IlegalDimensionSizeException;
 import mars_rover.position.Position;
 
-public record Territory(int xLimit, int yLimit) {
+import java.util.List;
+
+public record Territory(int xLimit, int yLimit, List<Position> obstacles) {
     public Territory {
         if (xLimit < 1 || yLimit < 1) {
             throw new IlegalDimensionSizeException("The dimension must be greater than 0");
@@ -42,6 +44,9 @@ public record Territory(int xLimit, int yLimit) {
     }
 
     public boolean hasObstacleIn(Position position) {
-        return true;
+        if(obstacles.contains(position)){
+            return true;
+        }
+        return false;
     }
 }

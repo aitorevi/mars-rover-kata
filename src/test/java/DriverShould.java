@@ -6,6 +6,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import parametrizedEnums.*;
 
+import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
 
 
@@ -45,7 +46,7 @@ public class DriverShould {
     void move_forward_twice(PositionsToMoveForwardTwice positionsToMoveForwardTwice) {
         Driver driver = new DriverBuilder()
                 .withDirection(positionsToMoveForwardTwice.direction)
-                .withPosition(new Position(2,2))
+                .withPosition(new Position(2, 2))
                 .build();
         driver.moveForward();
         driver.moveForward();
@@ -63,7 +64,7 @@ public class DriverShould {
     void move_backward_twice(PositionsToMoveBackwardTwice positionsToMoveBackwardTwice) {
         Driver driver = new DriverBuilder()
                 .withDirection(positionsToMoveBackwardTwice.direction)
-                .withPosition(new Position(2,2))
+                .withPosition(new Position(2, 2))
                 .build();
         driver.moveBackward();
         driver.moveBackward();
@@ -82,7 +83,7 @@ public class DriverShould {
         Driver driver = new DriverBuilder()
                 .withPosition(positionsToMoveForwardInTheLimit.initialPosition)
                 .withDirection(positionsToMoveForwardInTheLimit.direction)
-                .withTerritory(new Territory(3,3))
+                .withTerritory(new Territory(3, 3, emptyList()))
                 .build();
 
         driver.moveForward();
@@ -91,7 +92,7 @@ public class DriverShould {
                 new DriverBuilder()
                         .withPosition(positionsToMoveForwardInTheLimit.expectedPosition)
                         .withDirection(positionsToMoveForwardInTheLimit.direction)
-                        .withTerritory(new Territory(3,3))
+                        .withTerritory(new Territory(3, 3, emptyList()))
                         .build()
         );
     }
@@ -102,7 +103,7 @@ public class DriverShould {
         Driver driver = new DriverBuilder()
                 .withPosition(positionsToMoveBackwardInTheLimit.initialPosition)
                 .withDirection(positionsToMoveBackwardInTheLimit.direction)
-                .withTerritory(new Territory(3,3))
+                .withTerritory(new Territory(3, 3, emptyList()))
                 .build();
 
         driver.moveBackward();
@@ -111,7 +112,7 @@ public class DriverShould {
                 new DriverBuilder()
                         .withPosition(positionsToMoveBackwardInTheLimit.expectedPosition)
                         .withDirection(positionsToMoveBackwardInTheLimit.direction)
-                        .withTerritory(new Territory(3,3))
+                        .withTerritory(new Territory(3, 3, emptyList()))
                         .build()
         );
     }
