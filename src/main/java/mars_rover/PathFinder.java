@@ -7,7 +7,7 @@ import mars_rover.direction.West;
 import mars_rover.direction.East;
 import mars_rover.position.Position;
 
-public record Gps(Territory territory) {
+public record PathFinder(Territory territory) {
     public Position moveForward(Position position, Direction direction) {
         return switch (direction) {
             case North ignored -> forwardNorth(position);

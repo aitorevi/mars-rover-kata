@@ -8,12 +8,12 @@ import java.util.Objects;
 public class Driver {
     private Position position;
     private Direction direction;
-    private final Gps gps;
+    private final PathFinder pathFinder;
 
-    public Driver(Position position, Direction direction, Gps gps) {
+    public Driver(Position position, Direction direction, PathFinder pathFinder) {
         this.position = position;
         this.direction = direction;
-        this.gps = gps;
+        this.pathFinder = pathFinder;
     }
 
     public void turnLeft() {
@@ -25,11 +25,11 @@ public class Driver {
     }
 
     public void moveForward() {
-        position = gps.moveForward(position, direction);
+        position = pathFinder.moveForward(position, direction);
     }
 
     public void moveBackward() {
-        position = gps.moveBackward(position, direction);
+        position = pathFinder.moveBackward(position, direction);
     }
 
     public Position getPosition() {
@@ -47,12 +47,12 @@ public class Driver {
         Driver driver = (Driver) o;
         return Objects.equals(position, driver.position) &&
                Objects.equals(direction, driver.direction) &&
-               Objects.equals(gps, driver.gps);
+               Objects.equals(pathFinder, driver.pathFinder);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(position, direction, gps);
+        return Objects.hash(position, direction, pathFinder);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Driver {
         return "Driver{" +
                 "position=" + position +
                 ", direction=" + direction +
-                ", gps=" + gps +
+                ", gps=" + pathFinder +
                 '}';
     }
 }
