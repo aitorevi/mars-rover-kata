@@ -25,11 +25,17 @@ public class Driver {
     }
 
     public void moveForward() {
-        position = pathFinder.moveForward(position, direction);
+        apply(pathFinder.moveForward(position, direction));
     }
 
     public void moveBackward() {
-        position = pathFinder.moveBackward(position, direction);
+        apply(pathFinder.moveBackward(position, direction));
+    }
+
+    private void apply(MoveResult result) {
+        if (result instanceof MoveResult.Moved moved) {
+            position = moved.position();
+        }
     }
 
     public Position getPosition() {
