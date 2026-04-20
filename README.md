@@ -20,3 +20,47 @@ Change roles (driver, navigator) after each TDD cycle.
 No red phases while refactoring.
 Be careful about edge cases and exceptions. We can not afford to lose a mars rover, just because the developers
 overlooked a null pointer.
+
+## Obstacle detection
+
+`PathFinder` returns a `MoveResult` sealed type — either `Moved(position)` or `Blocked(obstacle)`. The `Driver`
+applies only `Moved` updates and records the hit obstacle; `Rover.followThis` aborts the command sequence the
+first time the driver reports `isBlocked()` and exposes `obstacleHit()` for inspection.
+
+## HTTP service
+
+A Spring Boot application wraps the domain behind a single endpoint:
+
+```
+POST /api/rover/commands
+Content-Type: application/json
+
+{
+  "territory": { "xLimit": 5, "yLimit": 5, "obstacles": [{"x": 1, "y": 3}] },
+  "rover":     { "position": {"x": 1, "y": 1}, "direction": "NORTH" },
+  "commands":  ["FORWARD", "FORWARD", "FORWARD"]
+}
+```
+
+Response example (blocked case):
+
+```json
+{
+  "position":    {"x": 1, "y": 2},
+  "direction":   "NORTH",
+  "status":      "BLOCKED",
+  "obstacleHit": {"x": 1, "y": 3}
+}
+```
+
+Run locally:
+
+```bash
+./gradlew bootRun
+```
+
+Run the tests:
+
+```bash
+./gradlew test
+```
