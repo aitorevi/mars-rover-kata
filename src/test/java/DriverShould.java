@@ -2,10 +2,14 @@ import builders.DriverBuilder;
 import builders.TerritoryBuilder;
 import mars_rover.Driver;
 import mars_rover.Territory;
+import mars_rover.direction.North;
 import mars_rover.position.Position;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.EnumSource;
 import parametrizedEnums.*;
+
+import java.util.List;
 
 import static java.util.Collections.emptyList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -116,5 +120,57 @@ public class DriverShould {
                         .withTerritory(new TerritoryBuilder().build())
                         .build()
         );
+    }
+
+    @Test
+    void not_move_when_an_obstacle_is_ahead() {
+        Position initialPosition = new Position(1, 1);
+        Territory territoryWithObstacle = new TerritoryBuilder()
+                .withObstacles(List.of(new Position(1, 2)))
+                .build();
+        Driver driver = new DriverBuilder()
+                .withPosition(initialPosition)
+                .withDirection(new North())
+                .withTerritory(territoryWithObstacle)
+                .build();
+
+        driver.moveForward();
+
+        assertThat(driver.getPosition()).isEqualTo(initialPosition);
+    }
+
+    @Test
+    void report_the_obstacle_position_after_being_blocked() {
+        Position obstacle = new Position(1, 2);
+        Territory territoryWithObstacle = new TerritoryBuilder()
+                .withObstacles(List.of(obstacle))
+                .build();
+        Driver driver = new DriverBuilder()
+                .withPosition(new Position(1, 1))
+                .withDirection(new North())
+                .withTerritory(territoryWithObstacle)
+                .build();
+
+        driver.moveForward();
+
+        assertThat(driver.isBlocked()).isTrue();
+        assertThat(driver.lastObstacle()).contains(obstacle);
+    }
+
+    @Test
+    void continue_to_turn_after_being_blocked() {
+        Territory territoryWithObstacle = new TerritoryBuilder()
+                .withObstacles(List.of(new Position(1, 2)))
+                .build();
+        Driver driver = new DriverBuilder()
+                .withPosition(new Position(1, 1))
+                .withDirection(new North())
+                .withTerritory(territoryWithObstacle)
+                .build();
+
+        driver.moveForward();
+        driver.turnRight();
+
+        assertThat(driver.getDirection().getClass().getSimpleName()).isEqualTo("East");
     }
 }

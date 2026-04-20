@@ -4,11 +4,13 @@ import mars_rover.direction.Direction;
 import mars_rover.position.Position;
 
 import java.util.Objects;
+import java.util.Optional;
 
 public class Driver {
     private Position position;
     private Direction direction;
     private final PathFinder pathFinder;
+    private Position lastObstacle;
 
     public Driver(Position position, Direction direction, PathFinder pathFinder) {
         this.position = position;
@@ -25,11 +27,26 @@ public class Driver {
     }
 
     public void moveForward() {
-        position = pathFinder.moveForward(position, direction);
+        apply(pathFinder.moveForward(position, direction));
     }
 
     public void moveBackward() {
-        position = pathFinder.moveBackward(position, direction);
+        apply(pathFinder.moveBackward(position, direction));
+    }
+
+    private void apply(MoveResult result) {
+        switch (result) {
+            case MoveResult.Moved moved -> position = moved.position();
+            case MoveResult.Blocked blocked -> lastObstacle = blocked.obstacle();
+        }
+    }
+
+    public boolean isBlocked() {
+        return lastObstacle != null;
+    }
+
+    public Optional<Position> lastObstacle() {
+        return Optional.ofNullable(lastObstacle);
     }
 
     public Position getPosition() {

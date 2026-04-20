@@ -8,22 +8,31 @@ import mars_rover.direction.East;
 import mars_rover.position.Position;
 
 public record PathFinder(Territory territory) {
-    public Position moveForward(Position position, Direction direction) {
-        return switch (direction) {
+    public MoveResult moveForward(Position position, Direction direction) {
+        Position candidate = switch (direction) {
             case North ignored -> forwardNorth(position);
             case West ignored -> forwardWest(position);
             case South ignored -> forwardSouth(position);
             case East ignored -> forwardEast(position);
         };
+        return resolve(candidate);
     }
 
-    public Position moveBackward(Position position, Direction direction) {
-        return switch (direction) {
+    public MoveResult moveBackward(Position position, Direction direction) {
+        Position candidate = switch (direction) {
             case North ignored -> backwardNorth(position);
             case West ignored -> backwardWest(position);
             case South ignored -> backwardSouth(position);
             case East ignored -> backwardEast(position);
         };
+        return resolve(candidate);
+    }
+
+    private MoveResult resolve(Position candidate) {
+        if (territory.hasObstacleIn(candidate)) {
+            return new MoveResult.Blocked(candidate);
+        }
+        return new MoveResult.Moved(candidate);
     }
 
     private Position forwardEast(Position position) {
