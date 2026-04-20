@@ -138,4 +138,39 @@ public class DriverShould {
 
         assertThat(driver.getPosition()).isEqualTo(initialPosition);
     }
+
+    @Test
+    void report_the_obstacle_position_after_being_blocked() {
+        Position obstacle = new Position(1, 2);
+        Territory territoryWithObstacle = new TerritoryBuilder()
+                .withObstacles(List.of(obstacle))
+                .build();
+        Driver driver = new DriverBuilder()
+                .withPosition(new Position(1, 1))
+                .withDirection(new North())
+                .withTerritory(territoryWithObstacle)
+                .build();
+
+        driver.moveForward();
+
+        assertThat(driver.isBlocked()).isTrue();
+        assertThat(driver.lastObstacle()).contains(obstacle);
+    }
+
+    @Test
+    void continue_to_turn_after_being_blocked() {
+        Territory territoryWithObstacle = new TerritoryBuilder()
+                .withObstacles(List.of(new Position(1, 2)))
+                .build();
+        Driver driver = new DriverBuilder()
+                .withPosition(new Position(1, 1))
+                .withDirection(new North())
+                .withTerritory(territoryWithObstacle)
+                .build();
+
+        driver.moveForward();
+        driver.turnRight();
+
+        assertThat(driver.getDirection().getClass().getSimpleName()).isEqualTo("East");
+    }
 }
